@@ -337,7 +337,9 @@ vector <Order*> * OrdersList::getOL(){
 
 int OrdersList::getIndex(vector<Order*> ol, Order *o)
 {
-    auto it = find(ol.begin(), ol.end(), o);
+    auto it = find_if(ol.begin(), ol.end(), [o](Order* element) {
+        return element == o;
+    });
 
     if (it != ol.end()) // if element is found 
     {
