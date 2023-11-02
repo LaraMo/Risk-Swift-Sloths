@@ -74,3 +74,25 @@ void testLoadMaps() {
     delete map9;
     map9 = NULL;
 };
+
+void gameLoadMap() {
+    MapLoader* loader = new MapLoader();
+
+    cout << "---------> Test 1: Load a valid map <---------\n\n";
+    Map* map1 = loader->loadMap("Map/MapFolder/cliff.map");
+    map1->printMapSummary();
+
+    delete map1;
+    map1 = NULL;
+}
+
+void gameValidateMap() {
+    MapLoader* loader = new MapLoader();
+
+    cout << "---------> Test 2: Validate a map <---------\n\n";
+    Map* map2 = loader->loadMap("Map/MapFolder/cliff.map");
+    map2->validate();
+
+    delete map2;
+    map2 = NULL;
+}
