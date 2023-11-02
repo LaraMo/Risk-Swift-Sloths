@@ -5,7 +5,18 @@
 #include <iostream>
 
 using namespace std;
-
+/*********************************************TO DO *************************************************/
+/**
+ * global vector that stores the players depending on the number of players entered by user
+ * and can be reduced as the number of players will get dropped as the game goes on until one player remains
+ * who will be the winner
+ * so something like
+ * vector<Player*> players;
+ * ask user to enter no of players loop to create the players and add them to the vector
+ * keep track of dropping the players depending on what happens with the orders from Order class
+ * maybe this will be in Asg3 am just thinking because this is the only way the game state will be winstate
+*/
+    
 /************************************************************ State **************************************************************/
 class State{
 public:
@@ -54,7 +65,7 @@ public:
 /**
  * Constructor with with an argument(s)
  */
-	Transition(string requiredCommand, State*  finalState);
+	Transition(State*  initialState, string requiredCommand, State*  finalState);
 /**
  * Assignment Operator
  */
@@ -70,9 +81,12 @@ public:
 
     string getCommand();
 
+    State * getCurrentState();
+    
     State * getNextState();
 
 private:
+    State* currentState;
     string command;
     State* nextState;
 };

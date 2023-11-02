@@ -67,8 +67,8 @@ void testGameStates() {
     while (userCommand.compare("end") != 0) {
         cout << "Enter one of the follwing commands:\n"
             "----------------------------\n"
-            " loadmap\n validate\n addplayer\n assigncountries\n issueorder\n "
-            "endissueorders\n execorder\n endexecorders\n win\n play\n end - to exit!\n"
+            " loadmap\n validatemap\n addplayer\n gamestart\n issueorder\n "
+            "endissueorders\n execorder\n endexecorders\n replay\n quit - to exit!\n"
             "----------------------------\n";
         cin >> userCommand;
         cout << "\n";

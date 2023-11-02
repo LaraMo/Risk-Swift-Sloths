@@ -1,0 +1,12 @@
+loadmap
+execorder
+validatemap
+addplayer
+gamestart
+issueorder
+endissueorders
+execorder
+endexecuteorders
+gamestart
+replay
+quit

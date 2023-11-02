@@ -52,7 +52,8 @@
 /**
  * Constructor with with an argument(s)
  */
-Transition::Transition(string requiredCommand, State* finalState){
+Transition::Transition(State*  initialState, string requiredCommand, State* finalState){
+    this->currentState = initialState;
     this->command = requiredCommand;
     this->nextState = finalState;
 }
@@ -61,6 +62,7 @@ Transition::Transition(string requiredCommand, State* finalState){
  */
     Transition& Transition::operator=(const Transition& other){
         this->command = other.command;
+        this->currentState = other.currentState;
         this->nextState = other.nextState;
         return *this;
     }
@@ -69,18 +71,22 @@ Transition::Transition(string requiredCommand, State* finalState){
  */
     Transition::Transition(const Transition& other){
         this->command = other.command;
+        this->currentState = currentState;
         this->nextState = other.nextState;
     }
 /**
  * overide Stream insertion operator
  */
     ostream& operator<<(ostream& out, Transition* t){
-        cout << "The " << t->command << " leads to the next state of : " << t->nextState << "\n";
+        cout << "The " << t->command << " gets you from " <<t->currentState << " to : " << t->nextState << "\n";
         return out;
 
     }
     string Transition::getCommand(){
         return command;
+    }
+    State * Transition::getCurrentState(){
+        return currentState;
     }
     State * Transition::getNextState(){
         return nextState;
@@ -120,20 +126,19 @@ Transition::Transition(string requiredCommand, State* finalState){
         vector<State*> states = initializeGameStates();
         vector<Transition*> gameTransitions;
 
-        Transition* t1 = new Transition("loadmap", states[1]);
-        Transition* t2 = new Transition("loadmap", states[1]);
-        Transition* t3 = new Transition("validate", states[2]);
-        Transition* t4 = new Transition("addplayer", states[3]);
-        Transition* t5 = new Transition("addplayer", states[3]);
-        Transition* t6 = new Transition("assigncountries", states[4]);
-        Transition* t7 = new Transition("issueorder", states[5]);
-        Transition* t8 = new Transition("issueorder", states[5]);
-        Transition* t9 = new Transition("endissueorders", states[6]);
-        Transition* t10 = new Transition("execorder", states[6]);
-        Transition* t11 = new Transition( "endexecorders", states[4]);
-        Transition* t12 = new Transition("win", states[7]);
-        Transition* t13 = new Transition("play", states[0]);
-        Transition* t14 = new Transition( "end", states[8]);
+        Transition* t1 = new Transition(states[0], "loadmap", states[1]);
+        Transition* t2 = new Transition(states[1], "loadmap", states[1]);
+        Transition* t3 = new Transition(states[1], "validatemap", states[2]);
+        Transition* t4 = new Transition(states[2], "addplayer", states[3]);
+        Transition* t5 = new Transition(states[3], "addplayer", states[3]);
+        Transition* t6 = new Transition(states[3], "gamestart", states[4]);
+        Transition* t7 = new Transition(states[4], "issueorder", states[5]);
+        Transition* t8 = new Transition(states[5], "issueorder", states[5]);
+        Transition* t9 = new Transition(states[5], "endissueorders", states[6]);
+        Transition* t10 = new Transition(states[6], "execorder", states[6]);
+        Transition* t11 = new Transition(states[6], "endexecorders", states[4]);
+        Transition* t12 = new Transition(states[7], "replay", states[0]);
+        Transition* t13 = new Transition(states[7], "quit", states[8]);
 
         gameTransitions.push_back(t1);
         gameTransitions.push_back(t2);
@@ -148,7 +153,6 @@ Transition::Transition(string requiredCommand, State* finalState){
         gameTransitions.push_back(t11);
         gameTransitions.push_back(t12);
         gameTransitions.push_back(t13);
-        gameTransitions.push_back(t14);
 
         return gameTransitions;
     }

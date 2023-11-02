@@ -81,6 +81,10 @@ OrdersList* Player::getOrdersList() { return this->orderList; }
 
 State* Player::getState() { return this->state; }
 
+void Player::setState(State* newState){
+    this->state = newState;
+}
+
 /**
  * Returns a random list of territories that are assigned to the user which they
  * would like to defend

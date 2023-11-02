@@ -54,6 +54,8 @@ class Player {
 
   State* getState();
 
+  void setState(State* newState);
+
   /**
    * Returns a random list of territories that are assigned to the user which
    * they would like to defend
