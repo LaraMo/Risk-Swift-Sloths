@@ -107,3 +107,83 @@ void testGameStates() {
     cout << "Deleted Transition pointers and set to null\n\n";
 
 }
+
+void startupPhase() {   
+    vector<State*> myStates = initializeGameStates();
+    vector<Transition*> myTransitions = initializeGameTransitions();
+
+    cout << "\n\n---------> Test 3: Assign CurrentState to newState <---------\n\n\n";
+
+    cout << "...Creating currentState as start ...\n";
+    State* currentState = myStates[0];
+    cout << "currentState created.\n\n";
+
+    cout << "...Printing Contents of current State...\n";
+    cout << "Current state is : " << currentState->getStateName() << "\n\n";
+
+    cout << "...assigning currentState using t1 nextState :maploaded ...\n";
+    currentState = myTransitions[0]->getNextState();
+    cout << "Current state is : " << currentState->getStateName() << "\n\n";
+
+    cout << "\n\n---------> Test 3: Testing User Input <---------\n\n\n";
+
+    cout << "...checking user input commands against game catalogue to allow or deny switch of states...\n";
+    cout << "...creating start state...\n";
+    State* cState = myStates[0];
+    cout << "start state created\n";
+    cout << "...Taking user input...\n";
+
+    bool transComplete;
+    string userCommand = "";
+    while (userCommand.compare("end") != 0) {
+        cout << "Enter one of the following commands:\n"
+            "----------------------------\n"
+            " loadmap\n validate\n addplayer\n assigncountries\n issueorder\n "
+            "endissueorders\n execorder\n endexecorders\n win\n play\n end - to exit!\n"
+            "----------------------------\n";
+        cin >> userCommand;
+        cout << "\n";
+        transComplete = false;
+        for (int i = 0; i < myTransitions.size(); i++) {
+            if (userCommand.compare(myTransitions[i]->getCommand()) == 0) { // string command
+                if (userCommand.compare("loadmap") == 0) { // if user wants to load a map    
+                    gameLoadMap();
+                }
+                if (userCommand.compare("validate") == 0) { // if user wants to validate the map
+                    gameValidateMap();
+                }
+                //if (userCommand.compare("addplayer") == 0) { // if user wants to load a map
+                //    testPlayers();
+                //}
+                cState = myTransitions[i]->getNextState(); // assign oldstate to newState
+                userCommand = myTransitions[i]->getCommand();
+                transComplete = true;
+                break;
+            }
+        }
+
+        if (transComplete) {
+            cout << "Current state is : " << cState->getStateName() << "\n\n";
+            if (userCommand.compare("end") == 0)
+                cout << "...Exiting testGameStates()...\n\n";
+        }
+        else {
+            cout << "The command entered: " << userCommand << " is invalid. Try Again.\n\n";
+        }
+    }
+
+    cout << "...Deleting State pointers and setting to null...\n";
+    for (int i = 0; i < myStates.size(); i++) {
+        delete myStates[i];
+        myStates[i] = NULL;
+    }
+    cout << "Deleted State pointers and set to null\n\n";
+
+    cout << "...Deleting Transition Pointers...\n";
+    for (int i = 0; i < myTransitions.size(); i++) {
+        delete myTransitions[i];
+        myTransitions[i] = NULL;
+    }
+    cout << "Deleted Transition pointers and set to null\n\n";
+
+}
