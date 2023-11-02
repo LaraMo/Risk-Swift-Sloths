@@ -152,9 +152,9 @@ void startupPhase() {
                 if (userCommand.compare("validate") == 0) { // if user wants to validate the map
                     gameValidateMap();
                 }
-                //if (userCommand.compare("addplayer") == 0) { // if user wants to load a map
-                //    testPlayers();
-                //}
+                if (userCommand.compare("addplayer") == 0) { // if user wants to load a map
+                    //gameAddPlayers();
+                }
                 cState = myTransitions[i]->getNextState(); // assign oldstate to newState
                 userCommand = myTransitions[i]->getCommand();
                 transComplete = true;
