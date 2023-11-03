@@ -165,7 +165,7 @@ Deploy* Deploy::clone() const {
  * Override the stringToLog method to print about the order
 */
 string Deploy::stringToLog() {
-    return "\n----------------------------------------- Logger -----------------------------------------\n Order ID: " + getOrderName() + "\n------------------------------------------------------------------------------------------\n";
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nDeploy executed | Player #" + to_string(p->getID()) + " now has " + to_string(terrToDeploy->getArmyCount()) + " reinforcments in Territory " + this->terrToDeploy->getName() + "\n\n------------------------------------------------------------------------------------------\n\n";
 };
 
 /**
@@ -315,6 +315,9 @@ void Advance::execute() {
                 cout << "Advance executed (player attacks target) | player " << p->getID()
                     << " has NOT occupied " << this->terrTarget->getName() << " and has 0 army in "
                     << this->terrSource->getName() <<"\n";
+                    notify(this);
+
+
                 //NOTE: leave owners as is, can only occupy after successful Advance attacker
             } 
         }
@@ -324,6 +327,13 @@ void Advance::execute() {
         << " | Player does not own source \n";
     }
 }
+
+/**
+ * Override the stringToLog method to print about the order
+*/
+string Advance::stringToLog() {
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nAdvance executed (player attacks target) | player " + to_string(p->getID()) +  " has NOT occupied " + this->terrTarget->getName() + " and has 0 army in " + this->terrSource->getName() + "\n\n------------------------------------------------------------------------------------------\n\n";
+};
 
 /**
  * @brief Valid if Territory is adjacant and player owns Source Territory
@@ -445,6 +455,7 @@ void Bomb::execute(){
         cout << "Bomb executed | "
             << terrTarget->getName() << " army is havled, and is now " 
             << terrTarget->getArmyCount() << "\n";
+        notify(this);
     }
     if(!terrHasOwner(terrTarget)){
         cout << "Bomb can NOT be executed | "
@@ -461,6 +472,13 @@ void Bomb::execute(){
             << "\n";
     }
 }
+
+/**
+ * Override the stringToLog method to print about the order
+*/
+string Bomb::stringToLog() {
+    return "\n----------------------------------------- Logger -----------------------------------------\n Order ID: " + getOrderName() + "\n------------------------------------------------------------------------------------------\n";
+};
 
 bool Bomb::validate(){
     if(p->ownsTerritory(this->terrTarget))
@@ -554,12 +572,21 @@ void Blockade::execute() {
         cout << "Blockade executed | "
             << terrTarget->getName() << " army is doubles, and is now "
             << terrTarget->getArmyCount()<<" | Territory is now Neutral" << "\n";
+            notify(this);
+
     }else{
         cout << "Blockade can NOT be executed | "
             << "player does not own " << terrTarget->getName() << "\n";
     }
     
 }
+
+/**
+ * Override the stringToLog method to print about the order
+*/
+string Blockade::stringToLog() {
+    return "\n----------------------------------------- Logger -----------------------------------------\n Order ID: " + getOrderName() + "\n------------------------------------------------------------------------------------------\n";
+};
 
 bool Blockade::validate(){ 
     if (p->ownsTerritory(this->terrTarget))
@@ -629,6 +656,8 @@ void Airlift::execute() {
         cout << "Airlift executed | "
             << terrSource->getName() << " has " << terrSource->getArmyCount() << " army units" 
             << " | " << terrTarget->getName() << " has " << terrTarget->getArmyCount() << " army units" << "\n";
+        notify(this);
+
     }
     else if (!p->ownsTerritory(terrSource)) {
         cout << "Ariflift can NOT be executed | "
@@ -644,6 +673,13 @@ void Airlift::execute() {
             << " does not have enough army units"<< "\n";
     }
 }
+
+/**
+ * Override the stringToLog method to print about the order
+*/
+string Airlift::stringToLog() {
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nAirlift executed | " +  terrSource->getName() + " has " + to_string(terrSource->getArmyCount()) + " army units | " + terrTarget->getName() + " has " + to_string(terrTarget->getArmyCount()) + " army units" + "\n\n------------------------------------------------------------------------------------------\n\n";
+};
 
 bool Airlift::validate() {
     if(!p->ownsTerritory(terrSource))
@@ -707,6 +743,8 @@ void Negotiate::execute() {
         cout << "Negotiate executed | "
             << "Player " << pSource->getID() << " will not be able to attack "
             << "Player " << pTarget->getID() << " and vice versa for the entire turn\n";
+        notify(this);
+
 
     }else{
         cout << "Negotiate can NOT be executed | "
@@ -714,6 +752,13 @@ void Negotiate::execute() {
             << " is the same as player target" << "\n";
     }
 }
+
+/**
+ * Override the stringToLog method to print about the order
+*/
+string Negotiate::stringToLog() {
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nNegotiate executed |  Player " + to_string(pSource->getID()) + " will not be able to attack & Player " + to_string(pTarget->getID()) + " and vice versa for the entire turn\n\n------------------------------------------------------------------------------------------\n\n";
+};
 
 bool Negotiate::validate(){
     if(pSource->getID() == pTarget->getID())
@@ -793,7 +838,7 @@ void OrdersList::addOrder(Order *o){
  * Overload the stringtoLog method to log the orderList 
 */
 string OrdersList::stringToLog() {
-    return "\n----------------------------------------- Logger -----------------------------------------\n OrderList: a new order was added with id " +  to_string(OL->back()->getOrderID())  + "\n------------------------------------------------------------------------------------------\n";
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\n OrderList: a new order was added with id " +  to_string(OL->back()->getOrderID())  + "\n\n------------------------------------------------------------------------------------------\n\n";
 };
 
 /**

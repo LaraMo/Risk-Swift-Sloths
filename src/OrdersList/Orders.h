@@ -140,7 +140,8 @@ public:
     void execute();
 
     bool validate();
-    
+
+    string stringToLog();
 
     /**
     * Simulates battle between two armies.
@@ -193,6 +194,9 @@ public:
     string getDescription();
 
     string getOrderName();
+
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrTarget;
@@ -222,6 +226,9 @@ public:
     string getDescription();
 
     string getOrderName();
+
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrTarget;
@@ -250,6 +257,9 @@ public:
     string getDescription();
 
     string getOrderName();
+    
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrSource;
@@ -282,6 +292,9 @@ public:
     string getDescription();
 
     string getOrderName();
+    
+    string stringToLog();
+
 private:
     Player* pSource;
     Player* pTarget;
