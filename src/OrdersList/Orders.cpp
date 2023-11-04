@@ -279,6 +279,7 @@ void Advance::execute(State* current) {
 void Advance::execute() {
     if(!pIsInExecuteState(p,getOrderName())){ return; } // player is NOT in execute order state
     if(this->getValid()){ // advance is valid
+        notify(this);
         if(pOwnsTerr(p,this->terrTarget)){ // player owns target
            if(terrSource->getArmyCount() < numReinToAdvnce){ //check source has enough reinforcments to give to target
                cout << "Can NOT execute Advance " << this->terrSource->getName()
@@ -315,7 +316,6 @@ void Advance::execute() {
                 cout << "Advance executed (player attacks target) | player " << p->getID()
                     << " has NOT occupied " << this->terrTarget->getName() << " and has 0 army in "
                     << this->terrSource->getName() <<"\n";
-                    notify(this);
 
 
                 //NOTE: leave owners as is, can only occupy after successful Advance attacker
@@ -477,7 +477,7 @@ void Bomb::execute(){
  * Override the stringToLog method to print about the order
 */
 string Bomb::stringToLog() {
-    return "\n----------------------------------------- Logger -----------------------------------------\n Order ID: " + getOrderName() + "\n------------------------------------------------------------------------------------------\n";
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\n Bomb executed | " + terrTarget->getName() + " army is havled, and is now " + to_string(terrTarget->getArmyCount()) + "\n\n------------------------------------------------------------------------------------------\n\n";
 };
 
 bool Bomb::validate(){
@@ -585,7 +585,7 @@ void Blockade::execute() {
  * Override the stringToLog method to print about the order
 */
 string Blockade::stringToLog() {
-    return "\n----------------------------------------- Logger -----------------------------------------\n Order ID: " + getOrderName() + "\n------------------------------------------------------------------------------------------\n";
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nBlockade executed | " + terrTarget->getName() + " army is doubles, and is now " + to_string(terrTarget->getArmyCount()) + " | Territory is now Neutral" + "\n\n------------------------------------------------------------------------------------------\n\n";
 };
 
 bool Blockade::validate(){ 

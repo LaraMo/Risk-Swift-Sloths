@@ -10,19 +10,7 @@ Deploy executed | Player #1 now has 9 reinforcments in Territory Bulgaria
 
 ----------------------------------------- Logger -----------------------------------------
 
-Advance executed (player attacks target) | player 1 has NOT occupied Bulgaria and has 0 army in UK
-
-------------------------------------------------------------------------------------------
-
-
------------------------------------------ Logger -----------------------------------------
- Order ID: Bomb
-------------------------------------------------------------------------------------------
-
-
------------------------------------------ Logger -----------------------------------------
-
-Airlift executed | UK has -2 army units | Bulgaria has 5 army units
+Airlift executed | UK has 9 army units | Bulgaria has 11 army units
 
 ------------------------------------------------------------------------------------------
 
@@ -30,7 +18,7 @@ Airlift executed | UK has -2 army units | Bulgaria has 5 army units
 
 ----------------------------------------- Logger -----------------------------------------
 
-Negotiate executed |  Player 1 will not be able to attack & Player 2 and vice versa for the entire turn
+Blockade executed | UK army is doubles, and is now 18 | Territory is now Neutral
 
 ------------------------------------------------------------------------------------------
 
@@ -38,67 +26,7 @@ Negotiate executed |  Player 1 will not be able to attack & Player 2 and vice ve
 
 ----------------------------------------- Logger -----------------------------------------
 
- OrderList: a new order was added with id 6
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
-Deploy executed | Player #1 now has 9 reinforcments in Territory Bulgaria
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
-Advance executed (player attacks target) | player 1 has NOT occupied Bulgaria and has 0 army in UK
-
-------------------------------------------------------------------------------------------
-
-
------------------------------------------ Logger -----------------------------------------
- Order ID: Bomb
-------------------------------------------------------------------------------------------
-
-
------------------------------------------ Logger -----------------------------------------
-
-Airlift executed | UK has -2 army units | Bulgaria has 3 army units
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
-Negotiate executed |  Player 1 will not be able to attack & Player 2 and vice versa for the entire turn
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
- OrderList: a new order was added with id 6
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
-Deploy executed | Player #1 now has 9 reinforcments in Territory Bulgaria
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
-Deploy executed | Player #1 now has 9 reinforcments in Territory Bulgaria
+ Bomb executed | UK army is havled, and is now 9
 
 ------------------------------------------------------------------------------------------
 
@@ -114,14 +42,6 @@ Advance executed (player attacks target) | player 1 has NOT occupied Bulgaria an
 
 ----------------------------------------- Logger -----------------------------------------
 
-Airlift executed | UK has -2 army units | Bulgaria has 6 army units
-
-------------------------------------------------------------------------------------------
-
-
-
------------------------------------------ Logger -----------------------------------------
-
 Negotiate executed |  Player 1 will not be able to attack & Player 2 and vice versa for the entire turn
 
 ------------------------------------------------------------------------------------------
@@ -130,7 +50,7 @@ Negotiate executed |  Player 1 will not be able to attack & Player 2 and vice ve
 
 ----------------------------------------- Logger -----------------------------------------
 
- OrderList: a new order was added with id 5
+ OrderList: a new order was added with id 7
 
 ------------------------------------------------------------------------------------------
 
