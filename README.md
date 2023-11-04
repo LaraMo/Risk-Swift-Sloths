@@ -1,10 +1,7 @@
 # Team
 
 - Eyal Azimov 
-- Paulo Baaich Da Silva
-- Oleksiy Kasyanenko
 - Liora Mezirovsky
-- Natasha Uwase
 
 # How to run our project?
 
