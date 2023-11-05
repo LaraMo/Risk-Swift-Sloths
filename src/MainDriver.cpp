@@ -19,7 +19,7 @@ int main()
      /*
     * Assignment 2
     */
-    testOrderExecution();
+    // testOrderExecution();
     testLoggingObserver();
 
     return 0;
