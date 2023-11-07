@@ -1,0 +1,9 @@
+loadmap ".IDontexist"
+loadmap "../Map/MapFolder/Africa.map"
+validatemap
+addplayer lara
+addplayer eyal
+addplayer mickey
+gamestart
+quit
+

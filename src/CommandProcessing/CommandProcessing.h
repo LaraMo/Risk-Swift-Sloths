@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream>
+#include <regex>
+#include <fstream>
 #include "../GameEngine/GameEngine.h"
 
 using namespace std;
@@ -109,7 +112,10 @@ public:
 
 private:
     string fileName;
-    // ????? FileLineReader
+    // track how we read the file
+    ifstream inputFile;
+    string line;
+
     friend ostream& operator<<(ostream& out, FileCommandProcessorAdapter* o);  // overide Stream insertion operator
     /**
      *   Will read commands from the text file
