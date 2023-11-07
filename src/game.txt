@@ -1,9 +1,7 @@
-loadmap ".IDontexist"
-loadmap "../Map/MapFolder/Africa.map"
+loadmap file1
+loadmap ../Map/MapFolder/Africa.map
 validatemap
 addplayer lara
 addplayer eyal
-addplayer mickey
 gamestart
 quit
-

@@ -5,6 +5,7 @@
 #include <regex>
 #include <fstream>
 #include "../GameEngine/GameEngine.h"
+#include "../LoggingObserver/LoggingObserver.h"
 
 using namespace std;
 /************************************************************ Command **************************************************************/
@@ -47,7 +48,7 @@ private:
 };
 
 /************************************************************ CommandProcessor **************************************************************/
-class CommandProcessor {
+class CommandProcessor : public Subject, public ILoggable  {
 public:
     /**
      * Default
@@ -85,6 +86,12 @@ private:
  * Save into the private collection of commands
 */
     void saveCommand(Command* c);
+
+    /**
+     * Override string to log (observer pattern)
+    */
+    string stringToLog();
+
 
 };
 /************************************************************ FileCommandProcessorAdapter   **************************************************************/
