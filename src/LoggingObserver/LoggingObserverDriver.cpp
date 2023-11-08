@@ -68,6 +68,10 @@ void testLoggingObserver() {
     processor->attach(logger);
     Command* c = processor->getCommand();
 
+    // test command effect
+    c->attach(logger);
+    c->saveEffect("new effect");
+
 
     // avoid dangeling pointers
     for (int i = 0; i < numberOfOrders; i++) {
@@ -89,10 +93,10 @@ void testLoggingObserver() {
     p2 = NULL;
 
 
+    delete c;
+    c = NULL;
+    
     // TODO: delete command and processor
-    // delete c;
-    // c = NULL;
-
     // delete processor;
     // processor = NULL;
 
@@ -106,12 +110,12 @@ void testLoggingObserver() {
 // CommandProcessor::saveCommand() - DONE
 // Order::execute() --> DONE
 // OrderList::addOrder() --> DONE
-// Command::saveEffect() - TODO 
+// Command::saveEffect() - DONE  - but effect doesnt print 
 // GameEngine::transition() - TODO
 
 //todo: When merged - Extend the following Classes from Subject, public ILoggable and override the stringToLogMethod
 // Order - DONE 
 // OrderList -DONE
 // CommandProcessor - DONE
+// Command - DONE
 // GameEngine 
-// Command

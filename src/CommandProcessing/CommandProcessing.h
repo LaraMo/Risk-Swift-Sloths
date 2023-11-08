@@ -9,7 +9,7 @@
 
 using namespace std;
 /************************************************************ Command **************************************************************/
-class Command {
+class Command : public Subject, public ILoggable {
 public:
     /**
      * Default
@@ -37,9 +37,11 @@ public:
     */
     void saveEffect(string eff);
 
-    Command &operator=(const Command &other);
+    Command& operator=(const Command& other);
 
-private: 
+    string stringToLog();
+
+private:
     string name;
     string effect;
     friend ostream& operator<<(ostream& out, Command* o);  // overide Stream insertion operator
@@ -48,7 +50,7 @@ private:
 };
 
 /************************************************************ CommandProcessor **************************************************************/
-class CommandProcessor : public Subject, public ILoggable  {
+class CommandProcessor : public Subject, public ILoggable {
 public:
     /**
      * Default
@@ -66,7 +68,7 @@ public:
     Command* getCommand();
 
 
-    CommandProcessor &operator=(const CommandProcessor &other);
+    CommandProcessor& operator=(const CommandProcessor& other);
 
     /*
     * Validate if this command can be executed at this state of the game
@@ -82,9 +84,9 @@ private:
     */
     virtual string readCommand();
 
-/**
- * Save into the private collection of commands
-*/
+    /**
+     * Save into the private collection of commands
+    */
     void saveCommand(Command* c);
 
     /**
@@ -103,7 +105,7 @@ public:
     */
     FileCommandProcessorAdapter();
     /**
-    * Constructor with Params 
+    * Constructor with Params
     */
     FileCommandProcessorAdapter(string fileName);
     /**
@@ -115,7 +117,7 @@ public:
     */
     ~FileCommandProcessorAdapter();
 
-    FileCommandProcessorAdapter &operator=(const FileCommandProcessorAdapter &other);
+    FileCommandProcessorAdapter& operator=(const FileCommandProcessorAdapter& other);
 
 private:
     string fileName;
@@ -128,7 +130,7 @@ private:
      *   Will read commands from the text file
      */
     string readCommand();
-    
+
 };
 
 /************************************************************ FileCommandProcessorAdapter   **************************************************************/

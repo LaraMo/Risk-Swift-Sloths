@@ -39,8 +39,17 @@ string Command::getName() {
  * Save the effect of the command
  */
 void Command::saveEffect(string eff) {
+    notify(this);
     effect = eff;
 };
+
+/**
+ * Override the string to log
+*/
+string Command::stringToLog(){ 
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\nCommand with name: " + name + "was saved with the following effect " +  getEffect() + "\n\n------------------------------------------------------------------------------------------\n\n";
+}
+
 
 /**
  * Assignement operator
@@ -157,8 +166,7 @@ void CommandProcessor::saveCommand(Command* c) {
  * Override the string to log
 */
 string CommandProcessor::stringToLog(){ 
-    cout << "********hello";
-    return "\n\n----------------------------------------- Logger -----------------------------------------\n\n" + commands.back()->getName() + " was saved to the collection of commands" "\n\n------------------------------------------------------------------------------------------\n\n";
+    return "\n\n----------------------------------------- Logger -----------------------------------------\n\n" + commands.back()->getName() + " was saved to the collection of commands\n\n------------------------------------------------------------------------------------------\n\n";
 }
 
 /**
