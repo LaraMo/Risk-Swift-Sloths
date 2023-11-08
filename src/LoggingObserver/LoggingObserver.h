@@ -8,7 +8,7 @@
 using namespace std;
 /************************************************************ ILoggable ************************************************************/
 class ILoggable {
-    // ? : does this need a constructor and destructor
+// ? : does this need a constructor and destructor
 public:
     virtual string stringToLog() = 0;
 };
@@ -21,10 +21,10 @@ public:
 
 /************************************************************ LogObserver ************************************************************/
 class LogObserver : public Observer {
-public:
+    public: 
     void update(ILoggable* loggable);
 
-private:
+    private:
     void printToFileHelper(string log);
 };
 
@@ -46,7 +46,7 @@ public:
      */
     void notify(ILoggable* loggable);
 
-private:
+    private:
     list<Observer*> observers;
 };
 
