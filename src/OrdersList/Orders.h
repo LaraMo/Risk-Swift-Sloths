@@ -141,6 +141,8 @@ public:
 
     bool validate();
 
+    string stringToLog();
+
     /**
     * Simulates battle between two armies.
     * @return int 1 if source wins, 0 if target wins
@@ -192,6 +194,9 @@ public:
     string getDescription();
 
     string getOrderName();
+
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrTarget;
@@ -221,6 +226,9 @@ public:
     string getDescription();
 
     string getOrderName();
+
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrTarget;
@@ -249,6 +257,9 @@ public:
     string getDescription();
 
     string getOrderName();
+    
+    string stringToLog();
+
 private:
     Player* p;
     Territory* terrSource;
@@ -281,13 +292,16 @@ public:
     string getDescription();
 
     string getOrderName();
+    
+    string stringToLog();
+
 private:
     Player* pSource;
     Player* pTarget;
 };
 
 
-class OrdersList 
+class OrdersList : public Subject, public ILoggable 
 {
 public:
     OrdersList();
@@ -301,7 +315,7 @@ public:
 
     virtual void addOrder(Order* o);
     
-    virtual string stringToLog();
+    string stringToLog();
 
     /**
     * Moves order to new location in OL
